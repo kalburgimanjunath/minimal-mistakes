@@ -1,111 +1,201 @@
 ---
 layout: post
-title: Sample Post
-excerpt: "Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more."
+title: Redux
+excerpt: "Redux"
 modified: 2013-05-31
 tags: [intro, beginner, jekyll, tutorial]
 comments: true
-image:
-  feature: sample-image-5.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
+State management is absolutely critical in a Web Application Development. 
 
-<section id="table-of-contents" class="toc">
-  <header>
-    <h3>Overview</h3>
-  </header>
-<div id="drawer" markdown="1">
-*  Auto generated table of contents
-{:toc}
-</div>
-</section><!-- /#table-of-contents -->
+We have discussed about how we manage state in a react application using State and Context. 
 
-## HTML Elements
+State contains data specific to a given component that may change over time. 
 
-Below is just about everything you'll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.
+Using Context, we pass the data from parent component to Child component and from Child to Parent which are placed at different nesting levels.
 
-# Heading 1
+For low-frequency updates like locale or theme changes or user authentication, the React Context is perfectly fine. But with a more complex state object like products in the shopping cart which has high-frequency updates, the React Context won't be a good solution. Because, the React Context will trigger a re-render on each update, and optimizing it manually can be really tough. 
 
-## Heading 2
+Redux provides a solid, stable and mature solution to managing state in your React application.
 
-### Heading 3
 
-#### Heading 4
+ 
+If we have components that are siblings and need to share data, the way to do that in React is to pull that data up into a parent component and pass it down with props.
 
-##### Heading 5
+That can be cumbersome though. Redux can help by giving you one global “parent” where you can store the data, and then you can connect the sibling components to the data with React-Redux.
 
-###### Heading 6
+In this article, we will start understanding Redux.
 
-### Body text
+Lets Open Index.js file from our demo-project. 
 
-Lorem ipsum dolor sit amet, test link adipiscing elit. **This is strong**. Nullam dignissim convallis est. Quisque aliquam.
+Add a New Javascript file in our src folder and we will name it as Employee.
 
-![Smithsonian Image]({{ site.url }}/images/3953273590_704e3899d5_m.jpg)
-{: .image-pull-right}
+I have the Contents of this Component handy and I Paste it here. 
 
-*This is emphasized*. Donec faucibus. Nunc iaculis suscipit dui. 53 = 125. Water is H2O. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. The New York Times (That’s a citation). Underline.Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
+ 
+We will create a new Component in our index.js file called AppComponent and we will call our Employee Component from AppComponent. 
 
-HTML and CSS are our tools. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.
+We will render the AppComponent to our ReactDOM. 
 
-### Blockquotes
+Save the Changes, navigate to the browser. 
 
-> Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convallis est. Quisque aliquam.
+We can see that Employee Salary gets changed as we click on increase or decrease buttons. 
 
-## List Types
+To start understanding Redux, we will re-write the same example using redux so that one can understand the basics of redux so well before we get into complex examples. 
 
-### Ordered Lists
+We will create a new Component in our index.js file called AppComponent and we will call our Employee Component from AppComponent. 
 
-1. Item one
-   1. sub item one
-   2. sub item two
-   3. sub item three
-2. Item two
+We will render the AppComponent to our ReactDOM. 
 
-### Unordered Lists
+Save the Changes, navigate to the browser. 
 
-* Item one
-* Item two
-* Item three
+We can see that Employee Salary gets changed as we click on increase or decrease buttons. 
 
-## Tables
+To start understanding Redux, we will re-write the same example using redux so that one can understand the basics of redux so well before we get into complex examples. 
 
-| Header1 | Header2 | Header3 |
-|:--------|:-------:|--------:|
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|----
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|=====
-| Foot1   | Foot2   | Foot3
-{: rules="groups"}
 
-## Code Snippets
+ 
+ Lets install redux into our project by running a command 
 
-{% highlight css %}
-#container {
-  float: left;
-  margin: 0 -240px 0 0;
-  width: 100%;
+Npm install –save redux react-redux
+
+redux gives you a store, and lets you keep state in it, and get state out, and respond when the state changes. But that’s all it does.
+
+It’s actually react-redux that lets you connect data of the state to React components.
+
+
+ 
+The redux library can be used outside of a React app too. It’ll work with Vue or Angular apps as well.
+
+Lets create one Global store using Redux where we are going to keep our data. 
+
+Redux comes with a handy function that creates stores, and it’s called createStore.
+
+To this createStore, We have to provide a function that will return the state data based on the action user performs. This function takes two parameters, one is the state data and the other one is action. That function is called a reducer in Redux terminology.
+
+
+ 
+In short, reducer is a function that takes the current state, and an action, and returns the newState
+
+We can create an employee object and pass that to the state parameter. 
+
+Action is a JavaScript object. Action will have a type property that indicates the type of action being performed. Types should typically be defined as string constants.
+
+We will write switch case on the action type and accordingly increment or decrement the salary. 
+
+And we return the state object.
+
+Now it’s time to hook up Redux to React.
+
+To do that, the react-redux library comes with 2 things: a component called Provider, and a function called connect.
+
+By wrapping the entire app with the Provider component, every component in the app tree will be able to access the Redux store if it wants to.
+
+
+ 
+After this, Employee Component, and children of Employee, and children of their children, and so on – all of them can now access the Redux store.
+
+But not automatically. We’ll need to use the connect function on our components to access the store.
+
+Lets go to Employee.js file, 
+
+Lets remove the state object and setstate calls we are doing. 
+
+We can access the salary from the redux store using the props. 
+
+When user clicks on increment or decrement button, we initiate the state change trigger by calling dispatch method. To the dispatch method, we pass the type.
+
+We do the same in decrement function as well. 
+
+To get the Salaryout of Redux, we first need to import the connect function.
+
+Then we need to “connect” the Employee component to Redux at the bottom.
+
+To the connect function, we pass another function as a parameter and that function takes state object as parameter and we can return the salary. 
+
+Connect is a higer order Component to which we pass our Employee Component
+
+Save the Changes, navigate to the browser. 
+
+We can see that Employee Salary gets changed as we click on increase or decrease buttons. 
+
+I hope we are clear now on what is action, reducer and store in redux. 
+
+We will continue our discussion in our next article. 
+
+Index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Employee from './Employee';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+
+const employeeData={
+  salary:15000
+};
+
+const reducer=(state=employeeData,action)=>{
+  switch(action.type){
+    case 'INCREMENT':
+      return {salary:state.salary + 1000};
+
+    case 'DECREMENT':
+      return {salary:state.salary - 1000};
+
+    default:
+      return state;
+  }
 }
-{% endhighlight %}
+const store=createStore(reducer);
 
-## Buttons
+const App = () => (
+  <Provider store={store}>
+    <Employee></Employee>
+  </Provider>
+);
 
-Make any link standout more when applying the `.btn` class.
+ReactDOM.render(<App></App>,document.getElementById("root"));
+Employee.js
 
-{% highlight html %}
-<a href="#" class="btn btn-success">Success Button</a>
-{% endhighlight %}
 
-<div markdown="0"><a href="#" class="btn">Primary Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-success">Success Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-warning">Warning Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-danger">Danger Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-info">Info Button</a></div>
+/* eslint-disable no-useless-constructor */
+import React from 'react';
+import {connect} from 'react-redux';
 
-## Notices
+class Employee extends React.Component {
+    
+    constructor(props){
+        super(props);
+    }
 
-**Watch out!** You can also add notices by appending `{: .notice}` to a paragraph.
-{: .notice}
+  incrementSalary = () => {
+    this.props.dispatch({type:'INCREMENT'});
+  }
+
+  decrementSalary = () => {
+    this.props.dispatch({type:'DECREMENT'});
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Welcome to Employee Component...</h2>
+        <div>
+            <p>
+                <label>Employee Salary : <b>{this.props.salary}</b></label>
+            </p>
+          <button onClick={this.incrementSalary}>Increment</button>          
+          <button onClick={this.decrementSalary}>Decrement</button>
+        </div>
+      </div>
+    )
+  }
+}
+
+function mapStateToProps(state){
+    return{
+        salary:state.salary
+    };
+}
+export default connect(mapStateToProps)(Employee);
