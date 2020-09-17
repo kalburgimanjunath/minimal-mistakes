@@ -6,6 +6,7 @@ modified: 2013-05-31
 tags: [intro, beginner, jekyll, tutorial]
 comments: true
 ---
+<pre>
 State management is absolutely critical in a Web Application Development. 
 
 We have discussed about how we manage state in a react application using State and Context. 
@@ -199,3 +200,4 @@ function mapStateToProps(state){
     };
 }
 export default connect(mapStateToProps)(Employee);
+</pre>
