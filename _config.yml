@@ -1,8 +1,8 @@
 # Site wide configuration
 
-title:            Minimal Mistakes
+title:            Manjunath
 locale:           en_US
-url:              //mmistakes.github.io/minimal-mistakes
+url:              //kalburgimanjunath.github.io/minimal-mistakes
 
 
 # Jekyll configuration
@@ -41,21 +41,21 @@ titlecase: true
 
 # Site owner
 owner:
-  name: Michael Rose
+  name: Manjunath Kalburgi
   avatar: bio-photo.jpg
-  bio: "Just another boring, time traveling, tattooed, designer from Buffalo New York."
-  disqus-shortname: minimalmistakes
-  twitter: mmistakes
-  facebook: michaelrose
+  bio: "Lead by Nature"
+  disqus-shortname: manjunathk
+  twitter: manjunathk
+  facebook: kalburgimanjunath
   google:
-    plus: MichaelRoseDesign
+    plus: manjunathkalburgi
     analytics: UA-2011187-3
     verify: UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y
     ad-client: ca-pub-7328585512091257
     ad-slot: 7855747535
   bing-verify: D81F4C18A6CB3018F64D7C827D953DFD
-  github: mmistakes
-  instagram: mmistakes
+  github: kalburgimanjunath
+  instagram: manjunathkalburgi
 
 include: [".htaccess"]
 exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
